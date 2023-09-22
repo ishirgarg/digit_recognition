@@ -1,2 +1,3 @@
-/data/numbers_operations # Data is too big to store on repo
-/data/numbers_operations_split # Data is too big to store on repo
+# Data is too big to store on repo
+/data/numbers_operations
+/data/numbers_operations_split
