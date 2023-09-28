@@ -5,7 +5,6 @@ import cv2
 import matplotlib.pyplot as plt
 
 NUM_CLASSES = 16
-model_weights_file_output_path = "./expression_classifier_model.ckpt"
 
 def int_to_class(predicted_class):
     dict = {
@@ -58,10 +57,10 @@ def create_model():
     return model
 
 # Load the model parameters
-def load_model():
+def load_model(file_input_path):
     # Load model
     model = create_model()
-    model.load_weights(model_weights_file_output_path)
+    model.load_weights(file_input_path)
 
     return model
 

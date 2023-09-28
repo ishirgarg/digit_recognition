@@ -1,8 +1,14 @@
 import sys
 import pygame
+import os
 from classifier import load_model, evaluate_image_expression
 
-def main():
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(base_path, relative_path)
+
+if __name__ == '__main__':
     pygame.init()
     fps = 500
     fps_clock = pygame.time.Clock()
@@ -11,7 +17,7 @@ def main():
     font = pygame.font.SysFont('Arial', 20)
 
     # Load model
-    model = load_model()
+    model = load_model(resource_path("expression_classifier_model.ckpt"))
 
     # Text to display for expression
     expression_text = ""
@@ -29,9 +35,9 @@ def main():
         pygame.image.save(canvas, file_path)
 
     def evaluate_expression():
-        nonlocal expression_text
-        
-        file_path = "./canvas.png"
+        global expression_text
+
+        file_path = resource_path("canvas.png")
         save_canvas(file_path)
 
         eval_result = evaluate_image_expression(model, file_path)
@@ -145,6 +151,3 @@ def main():
 
         pygame.display.flip()
         fps_clock.tick(fps)
-
-main()
-
