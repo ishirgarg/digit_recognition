@@ -3,6 +3,6 @@
 A convolutional neural network that reads handwritten mathematical expressions and computes their value.
 To build, run
 ```
-pyinstaller 
+python3 -m PyInstaller app.spec
 ```
-To use, navigate to the dist/ directory and 
+This will build an executable called 'app' in the dist/app/ folder
